@@ -85,6 +85,11 @@ hr {
   font-size: 1.5rem;
   line-height: 2rem;
 }
+
+.font-3xl {
+  font-size: 2rem;
+  line-height: 2rem;
+}
 .card {
   cursor: pointer;
   background-color: #fff;
@@ -229,6 +234,18 @@ nav a:focus {
   nav {
     flex-direction: column;
   }
+  nav .items-center {
+    align-items: initial;
+  }
+
+  nav .f-left {
+    align-self: flex-start;
+  }
+
+  nav .f-right {
+    align-self: flex-end;
+  }
+
   nav div {
     margin-right: 0;
   }
