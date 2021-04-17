@@ -1,8 +1,11 @@
 /* Export your NodeJS module from this file */
 exports.isPalindrome = (string) => {
-  let reverseString = "";
+  if (typeof string !== "string")
+    throw new Error("Element to validate must be string.");
 
-  if (typeof string !== "string" || string == "") return false;
+  if (typeof string === "") return false;
+
+  let reverseString = "";
 
   let formatString = string.replace(/[^a-zA-Z0-9\.]+/g, "");
   formatString = formatString.toLowerCase();
@@ -16,11 +19,13 @@ exports.isPalindrome = (string) => {
   return false;
 };
 
-exports.randomAsyncStringIsPalindrome = async (obj) => {
-  let string = await obj.get();
-  let result = false;
-
-  isPalindrome(string) ? (result = true) : (result = false);
-
-  return result;
+exports.randomAsyncStringIsPalindrome = (obj, isPalindrome) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let string = await obj.get();
+      isPalindrome(string) ? resolve(true) : resolve(false);
+    } catch (err) {
+      reject(err);
+    }
+  });
 };
